@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Download Job Portal Project</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+text-align:center;
+padding-top:120px;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+background:#28a745;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e7e34;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Download Job Portal Project</h2>
+
+<button onclick="downloadProject()">Download Project Files</button>
+
+<script>
+
+function downloadProject(){
+
+let zip = new JSZip();
+
+/* HTML FILES */
+
+zip.file("login.html", "<h2>Login Page</h2>");
+zip.file("register.html", "<h2>Register Page</h2>");
+zip.file("jobs.html", "<h2>Jobs List</h2>");
+zip.file("job-details.html", "<h2>Job Details</h2>");
+zip.file("apply-job.html", "<h2>Apply Job Page</h2>");
+zip.file("resume.html", "<h2>Resume Builder</h2>");
+
+/* CSS FILES */
+
+zip.file("style.css","body{font-family:Arial;}");
+zip.file("styles.css","h2{color:blue;}");
+
+/* JS FILE */
+
+zip.file("script.js","console.log('Job Portal Script');");
+
+/* NODE FILE */
+
+zip.file("node.js","console.log('Node server');");
+
+
+zip.generateAsync({type:"blob"}).then(function(content){
+
+let a = document.createElement("a");
+a.href = URL.createObjectURL(content);
+a.download = "job-portal-project.zip";
+a.click();
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
